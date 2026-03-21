@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESP32 Caméra — Projet DIY</title>
+<link rel="icon" type="image/png" href="image/entête.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <span class="nav-logo">ESP32 — Caméra</span>
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#materiel">Matériel</a></li>
+    <li><a href="#conception">Conception</a></li>
+    <li><a href="#realisation">Réalisation</a></li>
+    <li><a href="#code">Code</a></li>
+  </ul>
+</nav>
+<!-- Barre de progression -->
+<div id="progress-bar"></div>
+
+<!-- Toggle dark mode -->
+<button id="theme-toggle" title="Mode sombre">
+  <svg id="icon-moon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+  <svg id="icon-sun" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+
+<!-- Curseur personnalisé -->
+<div id="custom-cursor">
+  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2">
+    <circle cx="18" cy="18" r="10"/>
+    <circle cx="18" cy="18" r="3"/>
+    <line x1="18" y1="2" x2="18" y2="8"/>
+    <line x1="18" y1="28" x2="18" y2="34"/>
+    <line x1="2" y1="18" x2="8" y2="18"/>
+    <line x1="28" y1="18" x2="34" y2="18"/>
+  </svg>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <button id="lightbox-close">✕</button>
+  <button id="lightbox-prev">‹</button>
+  <img id="lightbox-img" src="" alt="">
+  <button id="lightbox-next">›</button>
+  <div id="lightbox-caption"></div>
+</div>
+
+<!-- HERO -->
+<section id="accueil">
+  <div class="hero-bg-ring"></div>
+  <div class="hero-bg-ring"></div>
+  <div class="hero-inner">
+    <span class="hero-tag">Projet DIY · 2026</span>
+    <h1>Appareil Photo<br><em>ESP32-CAM</em></h1>
+    <p class="hero-desc">De la modélisation 3D à la soudure des composants — la création complète d'un appareil photo miniature autonome basé sur le module ESP32 CAM.</p>
+    <p class="hero-desc">L'ESP32-CAM ouvre la porte à d'innombrables projets — même si celui-ci ne t'intéresse pas, le module seul suffit à donner vie à des dizaines d'autres idées, donc même si ce projet n'arrive pas à sa fin, vous pourrez quand même réaliser un autre projet dont la seule limite est votre esprit !</p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Composants</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Étapes clés</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">1</span>
+        <span class="stat-label">Module central</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATÉRIEL -->
+<section id="materiel">
+  <div class="section-header reveal">
+    <span class="section-num">01 —</span>
+    <h2>Le Matériel</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="card">
+    <div class="materiel-split">
+      <div class="materiel-text">
+        <h3>La pièce maîtresse</h3>
+        <p>L'ESP32-CAM est un module complet intégrant un microcontrôleur puissant, une interface Wi-Fi, et un connecteur caméra OV2640 — le tout dans un format compact idéal pour les projets embarqués.</p>
+        <br>
+        <ul class="specs-list">
+          <li>
+            <div>Module ESP32-CAM avec capteur OV2640</div>
+            <a href="https://fr.aliexpress.com/item/1005003472117545.html" target="_blank" class="buy-btn">Acheter →</a>
+          </li>
+          <li>
+            <div>Batterie Li-Po 3.7V rechargeable</div>
+            <a href="https://fr.aliexpress.com/item/1005010306000965.html" target="_blank" class="buy-btn">Acheter →</a>
+          </li>
+          <li>
+            <div>Bouton déclencheur tactile momentané</div>
+            <a href="https://fr.aliexpress.com/item/1005005522998695.html" target="_blank" class="buy-btn">Acheter →</a>
+          </li>
+        </ul>
+        <br>
+        <div class="disclaimer">
+          ⚠️ Cette liste ne comprend pas tout le matériel nécessaire — certains éléments que je possédais déjà ne sont pas listés, comme :
+          <li>un adaptateur USB vers micro-USB pour transférer les images</li>
+          <li>un chargeur compatible Li-Po (⚠️ sur la tête du chargeur car il existe plusieurs types).</li>
+          <li>Un Fer à Souder</li>
+          <li>De l'étain(rouleau)</li>
+          Pensez à vérifier que vous avez ces accessoires avant de vous lancer.
+        </div>
+      </div>
+      <div class="grid-2" style="align-content:start; gap:20px;">
+        <div class="img-cell" style="grid-column: 1 / -1;">
+          <img src="image/esp32.jpg" alt="ESP32 CAM" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><svg width=\'40\' height=\'40\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><rect x=\'2\' y=\'7\' width=\'20\' height=\'15\' rx=\'2\'/><circle cx=\'12\' cy=\'14\' r=\'3\'/><path d=\'M17 7V5a2 2 0 00-2-2h-6a2 2 0 00-2 2v2\'/></svg><span>ESP32-CAM</span></div>'">
+          <div class="img-caption">La pièce maîtresse : ESP32-CAM</div>
+        </div>
+        <div class="img-cell">
+          <img src="image/objet.jpg" alt="Kit complet" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><svg width=\'40\' height=\'40\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><rect x=\'2\' y=\'7\' width=\'20\' height=\'15\' rx=\'2\'/><circle cx=\'12\' cy=\'14\' r=\'3\'/><path d=\'M17 7V5a2 2 0 00-2-2h-6a2 2 0 00-2 2v2\'/></svg><span>Vue d\'ensemble</span></div>'">
+          <div class="img-caption">Vue d'ensemble des 3 éléments</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPTION -->
+<section id="conception">
+  <div class="section-header reveal">
+    <span class="section-num">02 —</span>
+    <h2>Conception &amp; Impression</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="card">
+    <div class="timeline">
+      <div class="timeline-left">
+
+        <div class="t-item reveal reveal-delay-1">
+          <span class="t-step">Étape A</span>
+          <div class="t-title">Modélisation 3D</div>
+          <p class="t-desc">Conception du boîtier sous SolidWorks — ergonomie, contraintes de montage, passage des câbles et fenêtre caméra.</p>
+          <div class="img-cell" style="margin-top:16px; aspect-ratio:4/3;">
+            <img src="image/3D.jpg" alt="Modèle 3D" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><svg width=\'36\' height=\'36\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><rect x=\'2\' y=\'7\' width=\'20\' height=\'15\' rx=\'2\'/><path d=\'M12 7V2\'/><path d=\'M8 5l4-3 4 3\'/></svg><span>Modèle 3D</span></div>'">
+            <div class="img-caption">Modélisation du boîtier</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="timeline-line">
+        <div class="t-dot" style="top:60px;"></div>
+        <div class="t-dot" style="top:300px;"></div>
+      </div>
+
+      <div class="timeline-right">
+
+        <div class="t-item reveal reveal-delay-2">
+          <span class="t-step">Étape B</span>
+          <div class="t-title">Première impression</div>
+          <p class="t-desc">Première impression — elle m'a permis d'identifier les points à corriger : tolérances, fixation du module, passage de câbles.</p>
+          <div class="img-cell" style="margin-top:16px; aspect-ratio:4/3;">
+            <img src="image/model_imprimer2.jpg" alt="Impression 1" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><svg width=\'36\' height=\'36\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><rect x=\'2\' y=\'7\' width=\'20\' height=\'15\' rx=\'2\'/><circle cx=\'12\' cy=\'14\' r=\'3\'/></svg><span>Impression A</span></div>'">
+            <div class="img-caption">Modèle imprimé — Première impression</div>
+          </div>
+        </div>
+
+
+
+        <div class="t-item reveal reveal-delay-3" style="margin-top:0;">
+          <span class="t-step">Étape C</span>
+          <div class="t-title">Ajustements finaux</div>
+          <p class="t-desc">Après corrections, cette version finale valide tous les points bloquants de la première impression, par conséquent la version finale.</p>
+          <div class="img-cell" style="margin-top:16px; aspect-ratio:4/3;">
+            <img src="image/model_imprimer1.jpg" alt="Impression 2" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><svg width=\'36\' height=\'36\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><rect x=\'2\' y=\'7\' width=\'20\' height=\'15\' rx=\'2\'/><circle cx=\'12\' cy=\'14\' r=\'3\'/></svg><span>Impression B</span></div>'">
+            <div class="img-caption">Modèle imprimé — Seconde impression</div>
+          </div>
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- RÉALISATION -->
+<section id="realisation">
+  <div class="section-header reveal">
+    <span class="section-num">03 —</span>
+    <h2>Réalisation &amp; Soudure</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="card">
+    <div class="etapes-grid">
+      <div class="etape-card reveal reveal-delay-1">
+        <div class="etape-img">
+          <img src="image/soudure3.jpg" alt="Soudure 1" onerror="this.parentElement.innerHTML='<div class=\'code-img-placeholder\' style=\'background:var(--gold-pale)\'><svg width=\'36\' height=\'36\' fill=\'none\' stroke=\'var(--gold)\' viewBox=\'0 0 24 24\'><path d=\'M12 20h9\'/><path d=\'M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z\'/></svg><span style=\'color:var(--gold)\'>Soudure 1</span></div>'">
+        </div>
+        <div class="etape-body">
+          <span class="etape-num">01</span>
+          <div class="etape-title">Préparation des points</div>
+          <p class="etape-desc">Trouver un endroit sécurisé pour utiliser le fer à souder.</p>
+          <p>⚠️Si vous n'avez jamais soudé, consultez un tutoriel avant de commencer — la soudure mal maîtrisée peut être dangereuse.</p>
+        </div>
+      </div>
+      <div class="etape-card reveal reveal-delay-2">
+        <div class="etape-img">
+          <img src="image/soudure2.jpg" alt="Soudure 2" onerror="this.parentElement.innerHTML='<div class=\'code-img-placeholder\' style=\'background:var(--gold-pale)\'><svg width=\'36\' height=\'36\' fill=\'none\' stroke=\'var(--gold)\' viewBox=\'0 0 24 24\'><path d=\'M12 20h9\'/><path d=\'M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z\'/></svg><span style=\'color:var(--gold)\'>Soudure 2</span></div>'">
+        </div>
+        <div class="etape-body">
+          <span class="etape-num">02</span>
+          <div class="etape-title">La Soudure</div>
+          <p >Soudure le chargeur femmelle au petit Module ainsi:
+            <li>Fil Rouge de la batterie (+) ➔ Broche B+ (ou BAT+) du petit module Type-C.</li>
+            <li>Fil Noir de la batterie (-) ➔ Broche B- (ou BAT-) du module Type-C.</li>
+            <br>
+            Puis la carte ESP32 CAM au Module ainsi:
+            <li>Broche OUT+ (ou VO+) du module ➔ Broche 5V de l'ESP32-CAM. (Surtout pas sur la broche 3.3V !)</li>
+            <li>Broche OUT- (ou VO-) du module ➔ Broche GND (terre) de l'ESP32-CAM.</li>
+</p>
+        </div>
+      </div>
+      <div class="etape-card reveal reveal-delay-3">
+        <div class="etape-img">
+          <img src="image/soudure1.jpg" alt="Soudure 3" onerror="this.parentElement.innerHTML='<div class=\'code-img-placeholder\' style=\'background:var(--gold-pale)\'><svg width=\'36\' height=\'36\' fill=\'none\' stroke=\'var(--gold)\' viewBox=\'0 0 24 24\'><path d=\'M12 20h9\'/><path d=\'M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z\'/></svg><span style=\'color:var(--gold)\'>Soudure 3</span></div>'">
+        </div>
+        <div class="etape-body">
+          <span class="etape-num">03</span>
+          <div class="etape-title">Test Finale</div>
+          <p class="etape-desc">Insertion la batterie Li-Po</p>
+          <p>⚠️ Attention — une mauvaise soudure peut provoquer un court-circuit, un incendie, voire l'explosion de la batterie. Vérifiez deux fois avant de brancher.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="code">
+  <div class="section-header reveal">
+    <span class="section-num">04 —</span>
+    <h2>Code Source</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="card">
+
+    <!-- Description -->
+    <p style="color:var(--ink-soft); font-weight:300; max-width:680px; margin-bottom:48px; font-size:.97rem; line-height:1.85;">
+      Le firmware tourne sur l'<strong style="color:var(--ink); font-weight:500;">ESP32-CAM AI Thinker</strong>, écrit en C++ via le framework Arduino. Il gère la capture photo au réveil, l'application de <strong style="color:var(--ink); font-weight:500;">20 filtres</strong> différents et l'enregistrement JPEG sur carte SD — le tout en deep sleep pour économiser la batterie.
+    </p>
+
+    <!-- Screenshots code -->
+    <div class="code-grid" style="margin-bottom:56px;">
+      <div class="code-block reveal reveal-delay-1">
+        <div class="code-header">
+          <div class="code-dot d1"></div><div class="code-dot d2"></div><div class="code-dot d3"></div>
+          <span class="code-filename">Initialisation & filtres</span>
+        </div>
+        <div class="code-img">
+          <img src="image/Code1.jpg" alt="Code 1" onerror="this.parentElement.innerHTML='<div class=\'code-img-placeholder\'><svg width=\'36\' height=\'36\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><polyline points=\'16 18 22 12 16 6\'/><polyline points=\'8 6 2 12 8 18\'/></svg><span>Capture à placer</span></div>'">
+        </div>
+      </div>
+      <div class="code-block reveal reveal-delay-2">
+        <div class="code-header">
+          <div class="code-dot d1"></div><div class="code-dot d2"></div><div class="code-dot d3"></div>
+          <span class="code-filename">Capture & écriture SD</span>
+        </div>
+        <div class="code-img">
+          <img src="image/Code2.jpg" alt="Code 2" onerror="this.parentElement.innerHTML='<div class=\'code-img-placeholder\'><svg width=\'36\' height=\'36\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><polyline points=\'16 18 22 12 16 6\'/><polyline points=\'8 6 2 12 8 18\'/></svg><span>Capture à placer</span></div>'">
+        </div>
+      </div>
+    </div>
+
+    <!-- Guide d'installation -->
+    <div style="border-top: 1px solid var(--border); padding-top: 48px; margin-bottom: 48px;">
+      <h3 style="font-family:var(--serif); font-size:1.8rem; font-weight:400; margin-bottom:8px;">Comment installer</h3>
+      <p style="color:var(--ink-soft); font-weight:300; font-size:.9rem; margin-bottom:36px;">5 étapes pour téléverser le code sur votre ESP32-CAM.</p>
+
+      <div class="install-steps">
+
+        <div class="install-step reveal">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <div class="step-title">Installer Arduino IDE</div>
+            <p class="step-desc">Télécharger et installer <strong>Arduino IDE 2.x</strong> depuis le site officiel d'Arduino. C'est l'éditeur dans lequel on colle et téléverse le code.</p>
+          </div>
+        </div>
+
+        <div class="install-step reveal reveal-delay-1">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <div class="step-title">Ajouter le support ESP32</div>
+            <p class="step-desc">Aller dans <em>Fichier → Préférences</em>, puis coller l'URL suivante dans le champ <em>"URL de gestionnaire de cartes supplémentaires"</em> :</p>
+            <div class="code-snippet">https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</div>
+          </div>
+        </div>
+
+        <div class="install-step reveal reveal-delay-2">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <div class="step-title">Installer le paquet Espressif</div>
+            <p class="step-desc">Dans le <em>Gestionnaire de cartes</em> (icône à gauche), rechercher <strong>"esp32"</strong> et installer <strong>"esp32 by Espressif Systems"</strong>. L'opération peut prendre quelques minutes.</p>
+          </div>
+        </div>
+
+        <div class="install-step reveal reveal-delay-3">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <div class="step-title">Sélectionner la bonne carte</div>
+            <p class="step-desc">Aller dans <em>Outils → Carte → esp32</em> et choisir <strong>"AI Thinker ESP32-CAM"</strong>.</p>
+          </div>
+        </div>
+
+        <div class="install-step reveal">
+          <div class="step-num">05</div>
+          <div class="step-body">
+            <div class="step-title">Aucune bibliothèque à ajouter ✓</div>
+            <p class="step-desc">Bonne nouvelle : toutes les bibliothèques utilisées (<code>esp_camera.h</code>, <code>SD_MMC.h</code>, <code>EEPROM.h</code>…) sont déjà incluses dans le paquet Espressif installé à l'étape 3. Rien d'autre à télécharger.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Code source -->
+    <div style="border-top: 1px solid var(--border); padding-top: 48px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+        <h3 style="font-family:var(--serif); font-size:1.8rem; font-weight:400;">Code complet</h3>
+        <button onclick="copyCode()" id="copy-btn" style="display:flex; align-items:center; gap:8px; background:none; border:1px solid var(--gold); color:var(--gold); padding:8px 20px; border-radius:20px; font-family:var(--sans); font-size:.78rem; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; transition:background .25s, color .25s;">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copier
+        </button>
+      </div>
+      <div class="code-block" style="border-radius:10px; overflow:hidden;">
+        <div class="code-header">
+          <div class="code-dot d1"></div><div class="code-dot d2"></div><div class="code-dot d3"></div>
+          <span class="code-filename">main.ino</span>
+        </div>
+        <pre id="source-code" style="margin:0; padding:28px; overflow-x:auto; font-family:'Courier New', monospace; font-size:.82rem; line-height:1.75; color:#c9b99a; background:#1e1c19; max-height:520px; overflow-y:auto;"><code>#include "esp_camera.h"
+#include "FS.h"
+#include "SD_MMC.h"
+#include "EEPROM.h"
+
+// Pin definition pour ESP32-CAM
+#define PWDN_GPIO_NUM     32
+#define RESET_GPIO_NUM    -1
+#define XCLK_GPIO_NUM      0
+#define SIOD_GPIO_NUM     26
+#define SIOC_GPIO_NUM     27
+#define Y9_GPIO_NUM       35
+#define Y8_GPIO_NUM       34
+#define Y7_GPIO_NUM       39
+#define Y6_GPIO_NUM       36
+#define Y5_GPIO_NUM       21
+#define Y4_GPIO_NUM       19
+#define Y3_GPIO_NUM       18
+#define Y2_GPIO_NUM        5
+#define VSYNC_GPIO_NUM    25
+#define HREF_GPIO_NUM     23
+#define PCLK_GPIO_NUM     22
+
+int pictureNumber = 1;
+int currentFilter = 0;
+
+void appliquerFiltre(sensor_t *s, int f) {
+  s->set_special_effect(s, 0); s->set_brightness(s, 0);
+  s->set_contrast(s, 0); s->set_saturation(s, 0); s->set_wb_mode(s, 0);
+  switch(f) {
+    case 0:  break;
+    case 1:  s->set_special_effect(s, 2); break; // N&B
+    case 2:  s->set_special_effect(s, 6); break; // Sépia
+    case 3:  s->set_special_effect(s, 1); break; // Négatif
+    case 4:  s->set_special_effect(s, 3); break; // Rouge
+    case 5:  s->set_special_effect(s, 4); break; // Vert
+    case 6:  s->set_special_effect(s, 5); break; // Bleu
+    case 7:  s->set_contrast(s, 2); break;        // Contraste+
+    case 8:  s->set_contrast(s, -2); s->set_saturation(s, -2); break; // Délavé
+    case 9:  s->set_brightness(s, 2); break;      // High Key
+    case 10: s->set_brightness(s, -2); s->set_contrast(s, 2); break;  // Low Key
+    case 11: s->set_special_effect(s, 2); s->set_contrast(s, 2); break;  // N&B Hard
+    case 12: s->set_special_effect(s, 6); s->set_contrast(s, 1); break;  // Sépia Hard
+    case 13: s->set_wb_mode(s, 3); break; // Froid
+    case 14: s->set_wb_mode(s, 4); break; // Chaud
+    case 15: s->set_special_effect(s, 1); s->set_contrast(s, 2); break;  // Négatif Hard
+    case 16: s->set_special_effect(s, 3); s->set_brightness(s, -2); break; // Rouge Dark
+    case 17: s->set_special_effect(s, 5); s->set_brightness(s, 1); break;  // Bleu Light
+    case 18: s->set_special_effect(s, 4); s->set_contrast(s, 2); break;    // Vert Matrix
+    case 19: s->set_special_effect(s, 2); s->set_contrast(s, -2); break;   // N&B Soft
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(4, OUTPUT);
+  digitalWrite(4, LOW);
+
+  EEPROM.begin(512);
+  EEPROM.get(0, pictureNumber);
+  EEPROM.get(4, currentFilter);
+
+  if (pictureNumber <= 0 || pictureNumber > 10000) pictureNumber = 1;
+  if (currentFilter < 0 || currentFilter > 19)    currentFilter = 0;
+
+  if (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0) {
+
+    // === BOUTON IO0 : appui court / long ===
+    pinMode(0, INPUT);
+    unsigned long pressTime = millis();
+    bool isLongPress = false;
+
+    while (digitalRead(0) == LOW) {
+      if (millis() - pressTime > 800) { isLongPress = true; break; }
+      delay(10);
+    }
+
+    if (isLongPress) {
+      // Appui long → reset du filtre
+      currentFilter = 0;
+      digitalWrite(4, HIGH); delay(800); digitalWrite(4, LOW);
+      while (digitalRead(0) == LOW) { delay(10); }
+    } else {
+      // Appui court → filtre suivant
+      currentFilter++;
+      if (currentFilter > 19) currentFilter = 0;
+      for (int i = 0; i <= currentFilter; i++) {
+        digitalWrite(4, HIGH); delay(2);
+        digitalWrite(4, LOW);  delay(250);
+      }
+    }
+
+    EEPROM.put(4, currentFilter);
+    EEPROM.commit();
+
+  } else {
+
+    // === MODE RST : prise de photo ===
+    camera_config_t config;
+    config.ledc_channel = LEDC_CHANNEL_0; config.ledc_timer = LEDC_TIMER_0;
+    config.pin_d0 = Y2_GPIO_NUM; config.pin_d1 = Y3_GPIO_NUM;
+    config.pin_d2 = Y4_GPIO_NUM; config.pin_d3 = Y5_GPIO_NUM;
+    config.pin_d4 = Y6_GPIO_NUM; config.pin_d5 = Y7_GPIO_NUM;
+    config.pin_d6 = Y8_GPIO_NUM; config.pin_d7 = Y9_GPIO_NUM;
+    config.pin_xclk  = XCLK_GPIO_NUM;  config.pin_pclk  = PCLK_GPIO_NUM;
+    config.pin_vsync = VSYNC_GPIO_NUM; config.pin_href  = HREF_GPIO_NUM;
+    config.pin_sscb_sda = SIOD_GPIO_NUM; config.pin_sscb_scl = SIOC_GPIO_NUM;
+    config.pin_pwdn  = PWDN_GPIO_NUM;  config.pin_reset = RESET_GPIO_NUM;
+    config.xclk_freq_hz = 20000000;
+    config.pixel_format = PIXFORMAT_JPEG;
+    config.frame_size   = FRAMESIZE_UXGA;
+    config.jpeg_quality = 10;
+    config.fb_count     = 1;
+
+    if (esp_camera_init(&config) == ESP_OK) {
+      sensor_t *s = esp_camera_sensor_get();
+      if (s != NULL) appliquerFiltre(s, currentFilter);
+
+      if (SD_MMC.begin("/sdcard", true)) {
+        digitalWrite(4, HIGH);
+        delay(1500);
+        camera_fb_t *fb = esp_camera_fb_get();
+        digitalWrite(4, LOW);
+
+        if (fb) {
+          String path;
+          while (true) {
+            path = "/photo_" + String(pictureNumber) + ".jpg";
+            if (!SD_MMC.exists(path)) break;
+            pictureNumber++;
+          }
+          File file = SD_MMC.open(path.c_str(), FILE_WRITE);
+          if (file) {
+            file.write(fb->buf, fb->len);
+            EEPROM.put(0, pictureNumber + 1);
+            EEPROM.commit();
+          }
+          file.close();
+          esp_camera_fb_return(fb);
+        }
+      }
+    }
+  }
+
+  esp_sleep_enable_ext0_wakeup(GPIO_NUM_0, 0);
+  delay(500);
+  esp_deep_sleep_start();
+}
+
+void loop() {}</code></pre>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">ESP32 Caméra</span>
+  <div class="footer-links">
+    <a href=" jeanbaptiste.barataud.pro@gmail.com " class="footer-link">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+      <span>Mail</span>
+    </a>
+    <a href="https://www.linkedin.com/in/jean-baptiste-barataud/" target="_blank" class="footer-link">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      <span>LinkedIn</span>
+    </a>
+    <a href="https://github.com/jeanbaptisteee" target="_blank" class="footer-link">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+      <span>GitHub</span>
+    </a>
+  </div>
+  <span class="footer-copy">Projet DIY by Barataud Jean-Baptiste — 2026</span>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
